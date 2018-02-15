@@ -1,0 +1,25 @@
+{
+  "name": "imagevue",
+  "version": "0.0.1",
+  "description": "A vue.js plugin for images preview\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Meowu/ImageVue.git"
+  },
+  "keywords": [
+    "Vue.js",
+    "Plugin",
+    "Images",
+    "Preview"
+  ],
+  "author": "Meowu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Meowu/ImageVue/issues"
+  },
+  "homepage": "https://github.com/Meowu/ImageVue#readme"
+}
