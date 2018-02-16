@@ -10,6 +10,16 @@
   overflow: hidden;
   background-color: rgba(30, 30, 30, .3);
   z-index: 99999999;
+  transition: opacity .5s ease-in-out;
+}
+
+@keyframes show {
+  from {
+    transform: scale(.8);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 
 .ImageView .ImageView--inner {
@@ -18,6 +28,7 @@
   align-content: center; */
   /* flex: auto; */
   /* width: 100%; */
+  animation: show .3s;
   height: 100%;
   overflow: auto;
   /* margin: 0 auto; */

@@ -123,6 +123,9 @@ export default {
       }, [children])
     },
     genImageBox(h) {
+      const style = {}
+      this.width && (style.maxWidth = this.width + 'px')
+      this.height && (style.maxHeight = this.height + 'px')
       let children = []
       console.log(this.images);
       if (typeof this.images === 'string') {
@@ -131,6 +134,7 @@ export default {
           'class': {
             'is-active': true
           },
+          style: style,
           attrs: {
             src: this.images,
             alt: 'ImagePreview'
@@ -139,6 +143,7 @@ export default {
       } else {
         children = this.images.map(image => h('img', {
           staticClass: 'ImageView--item',
+          style: style,
           attrs: {
             src: image,
             alt: 'ImagePreview'
