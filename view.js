@@ -91,6 +91,20 @@ export default {
         }
       }, [children])
     },
+    closeBtn() {
+      return this.$createElement('button', {
+        staticClass: 'ImageView--close__btn',
+        attrs: {
+          type: 'button'
+        },
+        on: {
+          click: e => {
+            e.stopPropagation()
+            this.close()
+          }
+        }
+      })
+    },
     genSlideNext() {
       const children = this.$createElement('div', {
         staticClass: 'next'
@@ -146,6 +160,7 @@ export default {
   render(h) {
     let children = []
     children.push(this.genImageBox(h))
+    children.push(this.closeBtn())
     if (Object.prototype.toString.call(this.images) === '[object Array]') {
       children.push(this.genSlidePrev())
       children.push(this.genSlideNext())

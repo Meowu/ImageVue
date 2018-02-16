@@ -88,4 +88,32 @@
   border-right: 1px solid #FFF;
   border-bottom: 1px solid #FFF;
   transform: rotate(-45deg);
-  }
+}
+
+.ImageView .ImageView--close__btn {
+  /* display: inline-block; */
+  /* position: relative; */
+  /* background-color: #F1F2FE; */
+  position: absolute;
+  background-color: transparent;
+  border: transparent;
+  top: 20px;
+  right: 30px;
+  color: #909399;
+  font-weight: 200;
+  font-size: 30px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  outline: none;
+  text-align:center;
+  cursor: pointer;
+}
+
+.ImageView .ImageView--close__btn:hover {
+  color: #6598dbda;
+}
+
+.ImageView .ImageView--close__btn:after {
+  content: '\00D7';
+}
