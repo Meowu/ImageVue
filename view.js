@@ -22,27 +22,31 @@ export default {
       }
     }
     this.$nextTick(() => {
-      this.list = Array.from(document.getElementsByClassName('ImageView--item'))
-      console.log(document.querySelectorAll('.ImageView--item'))
-      console.log(this.list);
-      this.limit = this.list.length - 1
-      this.list[this.current].classList.add('is-active')
+      Object.prototype.toString.call(this.images) === '[object Array]' && (this.limit = this.images.length - 1)
       this.$watch('current', function(val, old) {
-        console.log('val:', val);
-        console.log('old:', old);
-        if (val > this.limit) {
-          this.current = 0
-          this.list[this.current].classList.add('is-active')
-          this.list[this.limit].classList.remove('is-active')
-        } else if (val < 0) {
-          this.current = this.limit
-          this.list[this.current].classList.add('is-active')
-          this.list[0].classList.remove('is-active')
-        } else {
-          this.list[this.current].classList.add('is-active')
-          this.list[old].classList.remove('is-active')
-        }
+        val > this.limit && (this.current = 0)
+        val < 0 && (this.current = this.limit)
+        this.$refs.preview.setAttribute('src', this.images[this.current])
       })
+      // this.list = Array.from(document.getElementsByClassName('ImageView--item'))
+      // this.limit = this.list.length - 1
+      // this.list[this.current].classList.add('is-active')
+      // this.$watch('current', function(val, old) {
+      //   console.log('val:', val);
+      //   console.log('old:', old);
+      //   if (val > this.limit) {
+      //     this.current = 0
+      //     this.list[this.current].classList.add('is-active')
+      //     this.list[this.limit].classList.remove('is-active')
+      //   } else if (val < 0) {
+      //     this.current = this.limit
+      //     this.list[this.current].classList.add('is-active')
+      //     this.list[0].classList.remove('is-active')
+      //   } else {
+      //     this.list[this.current].classList.add('is-active')
+      //     this.list[old].classList.remove('is-active')
+      //   }
+      // })
     })
   },
   computed: {
@@ -134,17 +138,29 @@ export default {
           }
         }))
       } else {
-        children = this.images.map(image => h('img', {
+        children.push(h('img', {
           staticClass: 'ImageView--item',
+          'class': {
+            'is-active': true
+          },
           style: style,
           attrs: {
-            src: image,
+            src: this.images[0],
             alt: 'ImagePreview'
-          }
-          // 'class': {
-          //   'is-active': true
-          // }
+          },
+          ref: 'preview'
         }))
+        // children = this.images.map(image => h('img', {
+        //   staticClass: 'ImageView--item',
+        //   style: style,
+        //   attrs: {
+        //     src: image,
+        //     alt: 'ImagePreview'
+        //   }
+        //   // 'class': {
+        //   //   'is-active': true
+        //   // }
+        // }))
       }
       const data = {
         staticClass: 'ImageView--inner',
