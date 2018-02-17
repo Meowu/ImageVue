@@ -11,12 +11,15 @@ export default {
       list: null,
       current: 0,
       limit: 1,
+      // closeBtn: false,
     }
   },
   mounted() {
-    this.$el.onclick = (e) => {
-      e.stopPropagation()
-      this.close()
+    if (!this.closable) {
+      this.$el.onclick = (e) => {
+        e.stopPropagation()
+        this.close()
+      }
     }
     this.$nextTick(() => {
       this.list = Array.from(document.getElementsByClassName('ImageView--item'))
@@ -41,16 +44,6 @@ export default {
         }
       })
     })
-  },
-  watch: {
-    // current(val, old) {
-    //   val > this.limit && (val = 0)
-    //   this.list[val].classList.add('is-active')
-    //   this.list[old].classList.remove('is-active')
-    // },
-    // limit(val) {
-    //   val >
-    // }
   },
   computed: {
     classes() {
@@ -165,7 +158,9 @@ export default {
   render(h) {
     let children = []
     children.push(this.genImageBox(h))
-    children.push(this.closeBtn())
+    if(this.closable) {
+      children.push(this.closeBtn())
+    }
     if (Object.prototype.toString.call(this.images) === '[object Array]') {
       children.push(this.genSlidePrev())
       children.push(this.genSlideNext())
